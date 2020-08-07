@@ -48,6 +48,26 @@ for(i = 0; i < download.length; i++) {
     }, false);
 }
 
+switch(page) {
+    case '/analise.html':
+        ga('create', 'UA-12345-6​', 'auto', {'name': 'analise'});
 
+        //retorna elemento cardBox
+        let cardBox = document.getElementsByClassName("card-montadoras");
 
-
+        for(i = 0; i < cardBox.length; i++){  
+            cardBox[i].addEventListener("click", function(){
+                //retorna o data.id ('lorem', 'ipsum', 'dolor')
+                let idCardBox = $(this).attr('data-id');
+                ga('analise.send', {
+                    hitType: 'click',
+                    eventCategory: 'analise',
+                    eventAction: 'ver_mais',
+                    eventLabel: idCardBox,
+                    }, page);
+            })
+        } 
+        break;
+    case '/sobre.html':
+        break;
+}
