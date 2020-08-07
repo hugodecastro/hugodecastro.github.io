@@ -69,5 +69,66 @@ switch(page) {
         } 
         break;
     case '/sobre.html':
+        ga('create', 'UA-12345-6​', 'auto', {'name': 'sobre'});
+        let form = document.getElementsByClassName('contato');
+        let nome = document.getElementById("nome");
+        let email = document.getElementById("email");
+        let telefone = document.getElementById("telefone");
+        let aceite = document.getElementById("aceito");
+     
+        nome.addEventListener('input', function(){
+            let value = nome.value
+            if(value != "") {
+                ga('sobre.send', {
+                    hitType: 'preencher',
+                    eventCategory: 'contato',
+                    eventAction: nome.id,
+                    eventLabel: 'preencheu',
+                    }, page);
+            }
+        })
+        email.addEventListener('input', function(){
+            let value = email.value
+            if(value != "") {
+                ga('sobre.send', {
+                    hitType: 'preencher',
+                    eventCategory: 'contato',
+                    eventAction: email.id,
+                    eventLabel: 'preencheu',
+                    }, page);
+            }
+        })
+        telefone.addEventListener('input', function(){
+            let value = telefone.value
+            if(value != "") {
+                ga('sobre.send', {
+                    hitType: 'preencher',
+                    eventCategory: 'contato',
+                    eventAction: telefone.id,
+                    eventLabel: 'preencheu',
+                    }, page);
+            }
+        })
+        aceite.addEventListener('input', function(){
+            if(aceite.checked == true) {
+                ga('sobre.send', {
+                    hitType: 'preencher',
+                    eventCategory: 'contato',
+                    eventAction: aceite.id,
+                    eventLabel: 'preencheu',
+                    }, page);
+            }
+        })
+
+        for(i = 0; i < form.length; i++) {
+            form[i].addEventListener('submit', function(){
+                ga('sobre.send', {
+                    hitType: 'enviar',
+                    eventCategory: 'contato',
+                    eventAction: 'enviado',
+                    eventLabel: 'enviado',
+                    }, page);
+            });
+        }
         break;
 }
