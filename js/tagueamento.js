@@ -11,5 +11,43 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
     
-ga('create', 'UA-12345-6​', 'auto');
-ga('send', 'pageview');
+ga('create', 'UA-12345-6​', 'auto', {'name': 'contato'});
+
+//nome da página
+var page = document.location.pathname;
+
+//botão Entre em Contato
+var contato = document.getElementsByClassName("menu-lista-contato");
+
+//botão Download PDF
+var download = document.getElementsByClassName("menu-lista-download");
+
+//interação na collection contato
+for(i = 0; i < contato.length; i++) {
+    contato[i].addEventListener("click", function () {
+        ga('contato.send', {
+            hitType: 'pageview',
+            eventCategory: 'menu',
+            eventAction: 'entre_em_contato',
+            eventLabel: 'link_externo',
+        }, page);
+    }, false);
+}
+
+ga('create', 'UA-12345-6​', 'auto', {'name': 'download'});
+
+//interação na collection download
+for(i = 0; i < download.length; i++) {
+    download[i].addEventListener("click", function () {
+        ga('download.send', {
+            hitType: 'pageview',
+            eventCategory: 'menu',
+            eventAction: 'download_pdf',
+            eventLabel: 'download_pdf',
+        }, page);
+    }, false);
+}
+
+
+
+
